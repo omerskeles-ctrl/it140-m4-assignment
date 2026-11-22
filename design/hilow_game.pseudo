@@ -1,29 +1,57 @@
 # IT 140 Module Four Assignment
 # Higher/Lower Game Pseudocode Template
-#
-# Complete the TODO prompts below with your own pseudocode.
-# Keep this file in .pseudo format for submission.
-#
-# Use clear indentation to show decisions and repeated behavior.
-# Your finished pseudocode should address every requirement in the
-# current Module Four Assignment Guidelines and Rubric.
 
 START hilow_game
 
+    #Begin the game by welcoming the player, something simple.
+    OUTPUT "Welcome to the Higher or Lower game!"
+
     # Establish a valid guessing range.
-    TODO: Obtain the lower and upper bounds.
-    TODO: Repeat as needed until the bounds satisfy the requirement.
+    REPEAT
+        OUTPUT "Enter the lower bound:"
+        INPUT lower_bound
 
-    # Establish the number the player is trying to guess.
-    TODO: Generate the required random number from the valid range.
+        OUTPUT "Enter the upper bound:"
+        INPUT upper_bound
 
-    # Play the game.
-    TODO: Obtain and validate a guess using the selected bounds.
-    TODO: Repeat the required game behavior until the correct guess.
-        TODO: Compare a valid guess and provide the required feedback.
-        TODO: Obtain and validate another guess when play continues.
+        IF lower_bound >= upper_bound THEN
+            OUTPUT "The lower bound must be less than the upper bound."
+        END IF
+    UNTIL lower_bound < upper_bound
+
+
+   # Create a random number within the valid range.
+    SET target_number = RANDOM INTEGER BETWEEN lower_bound AND upper_bound
+
+    # Start the guessing game.
+    SET correct_guess = FALSE
+
+    OUTPUT "Guess a number between the lower and upper bound:"
+
+    WHILE correct_guess = FALSE
+    
+        # Validate the player's guess.
+        INPUT guess
+
+        WHILE guess < lower_bound OR guess > upper_bound
+            OUTPUT "Your guess must be between the lower and upper bounds."
+            OUTPUT "PLease guess another number:"
+            INPUT guess
+        END WHILE
+
+        # Compare the random number with the guess by player.
+        IF guess < target_number Then
+            OUTPUT "Number too low."
+            OUTPUT "Incorrect, guess another number:"
+        ELSE IF guess > target_number THEN
+            OUTPUT "Number too high."
+            OUTPUT "Incorrect, guess another number:"
+        ELSE
+            OUTPUT "Correct!"
+            SET correct_guess = TRUE
+        END IF
+
+    END WHILE
 
 END hilow_game
 
-# === References ===
-# TODO: Add references for sources you used, or delete this line if unused.
